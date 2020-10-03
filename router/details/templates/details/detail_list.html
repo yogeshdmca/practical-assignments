@@ -1,0 +1,28 @@
+{% extends 'details/base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<a class="btn btn-success" href="{% url 'detail-create' %}">Add new record</a>
+<h1>Details</h1>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>SAPID</td>
+			<td>Hostname</td>
+			<td>Loopback</td>
+			<td>Mac</td>
+			<td>Action</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for object in object_list %}
+		<tr>
+			<td><a href="{% url 'detail-update' object.id %}">{{ object.sapid }}</a></td>
+			<td>{{ object.hostname }}</td>
+			<td>{{ object.loopback }}</td>
+			<td>{{ object.mac_address }}</td>
+			<td><a class="btn btn-danger" href="{% url 'detail-delete' object.id %}">Delete</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
